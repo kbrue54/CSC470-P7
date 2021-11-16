@@ -16,6 +16,7 @@ namespace P5
         public FormRecordIssue(AppUser appUser)
         {
             InitializeComponent();
+            this.CenterToScreen();
             FakePreferenceRepository preferances = new FakePreferenceRepository();
             FakeIssueRepository issuesRepo = new FakeIssueRepository();
             FakeAppUserRepository usersRepo = new FakeAppUserRepository();
@@ -65,7 +66,7 @@ namespace P5
             {
                 FakeIssueStatusRepository issueStatusRepo = new FakeIssueStatusRepository();
                 FakeIssueRepository issuesRepo = new FakeIssueRepository();
-                issuesRepo.Add(new Issue
+                string result = issuesRepo.Add(new Issue
                 {
                     Id = Convert.ToInt32(Id_tb.Text),
                     Title = title_tb.Text,
@@ -77,6 +78,11 @@ namespace P5
                     ProjectID = PID
 
                 });
+
+                if(result != "")
+                {
+                    MessageBox.Show(result);
+                }
 
                 Close();
 

@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace P5
 {
+
     public partial class FormSelectIssue : Form
     {
+        public int _selectedIssueID;
         public FormSelectIssue(AppUser appUser)
         {
             InitializeComponent();
@@ -22,10 +24,32 @@ namespace P5
 
             dataGridView1.DataSource = issuesRepo.GetAll(Convert.ToInt32(PID));
 
+            this.CenterToScreen();
+    
+        }
 
-            foreach (Issue issue in issuesRepo.GetAll(Convert.ToInt32(PID)))
-            {
-            }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+         
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FakePreferenceRepository preferances = new FakePreferenceRepository();
+            FakeIssueRepository issuesRepo = new FakeIssueRepository();
+
+
+            _selectedIssueID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

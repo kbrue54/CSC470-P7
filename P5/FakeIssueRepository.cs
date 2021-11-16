@@ -78,7 +78,7 @@ namespace P5
             string newIssueName = Issue.Title.Trim();
             if (isDubplicate(newIssueName))
             {
-                return "Duplicate";
+                return "Duplicate Issue Detected";
             }
             if (newIssueName == "")
             {

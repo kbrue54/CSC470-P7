@@ -146,6 +146,7 @@
             this.issuesRemoveToolStripMenuItem.Name = "issuesRemoveToolStripMenuItem";
             this.issuesRemoveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.issuesRemoveToolStripMenuItem.Text = "R&emove";
+            this.issuesRemoveToolStripMenuItem.Click += new System.EventHandler(this.issuesRemoveToolStripMenuItem_Click);
             // 
             // issuesReportToolStripMenuItem
             // 

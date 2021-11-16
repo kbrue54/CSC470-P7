@@ -106,7 +106,33 @@ namespace P5
             form.ShowDialog();
             form.Dispose();
 
+            if (form.DialogResult == DialogResult.OK)
+            {
+                FormModifyIssue form2 = new FormModifyIssue(_CurrentAppUser, form._selectedIssueID);
+                form2.ShowDialog();
+                form2.Dispose();
+            }
+        }
 
+        private void issuesRemoveToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            FormSelectIssue form = new FormSelectIssue(_CurrentAppUser);
+            form.ShowDialog();
+            form.Dispose();
+
+            if( form.DialogResult == DialogResult.OK)
+            {
+                FakeIssueRepository issuesRepo = new FakeIssueRepository();
+                DialogResult result = MessageBox.Show("Are you sure you want to remove?", "Confirmation" + issuesRepo.GetIssuesByID(form._selectedIssueID).Title, MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    issuesRepo.Remove(issuesRepo.GetIssuesByID(form._selectedIssueID));
+                } else
+                {
+                    MessageBox.Show("Remove Canceled.");
+                }
+            }
         }
     }
 }
