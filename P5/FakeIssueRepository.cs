@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P5
 {
-    class FakeIssueRepository : IIssueRepository
+    public class FakeIssueRepository : IIssueRepository
     {
         public const string NO_ERROR = "";
         public const string EMPTY_TITLE_ERROR = "A title is required";
@@ -15,6 +15,48 @@ namespace P5
         public const string EMPTY_DISCOVERER_ERROR = "A discoverer is required.";
 
         private static List<Issue> _Issues = new List<Issue>();
+
+        public FakeIssueRepository()
+        {
+            if (_Issues.Count == 0)
+            {
+                _Issues.Add(new Issue
+                {
+                    Id =1,
+                    ProjectID = 1,
+                    Title = "Spelling Error",
+                    DiscoveryDate = DateTime.Now,
+                    Discoverer = ("Kyle Bruening"),
+                    InitialDescription="",
+                    Component ="",
+                    IssueStatusId =1
+                });
+
+                _Issues.Add(new Issue
+                {
+                    Id = 2,
+                    ProjectID = 1,
+                    Title = "SQL vulnerability",
+                    DiscoveryDate = DateTime.Now.AddMonths(-1),
+                    Discoverer = ("Kyle Bruening"),
+                    InitialDescription = "",
+                    Component = "",
+                    IssueStatusId = 1
+                }) ;
+
+                _Issues.Add(new Issue
+                {
+                    Id = 3,
+                    ProjectID = 1,
+                    Title = "ID not incrementing correctly",
+                    DiscoveryDate = DateTime.Now,
+                    Discoverer = ("John Doe"),
+                    InitialDescription = "",
+                    Component = "",
+                    IssueStatusId = 1
+                });
+            }
+        }
 
         string ValidateIssue(Issue issue) { return ""; }
         bool isDubplicate(string title) {
@@ -102,23 +144,27 @@ namespace P5
             int[] monthCounts = new int[12];
             int[] year = new int[12];
 
+            
+
             List<string> issuesByMonth = new List<string>();
 
             foreach (Issue i in _Issues)
             {
-                if (i.ProjectID == ProjectID)
+               if (i.ProjectID == ProjectID)
                 {
-                    monthCounts[i.DiscoveryDate.Month]++;
+                    monthCounts[i.DiscoveryDate.Month] ++;
                     year[i.DiscoveryDate.Month] = i.DiscoveryDate.Year;
-                   
-                }
+                 
+               }
             }
 
-            foreach (int month in monthCounts)
+
+            for (int i = 1; i< 12; i++)
             {
-                if(month != 0)
+               
+                if(monthCounts[i] > 0)
                 {
-                    issuesByMonth.Add(year[month].ToString() + " - " + monthCounts[month]  );
+                    issuesByMonth.Add(year[i].ToString() + " - " + i + " : "+ monthCounts[i]);
                 }
 
             }

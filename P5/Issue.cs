@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P5
 {
-    class Issue
+    public class Issue
     {
         public int Id { get; set; }
         public int ProjectID { get; set; }

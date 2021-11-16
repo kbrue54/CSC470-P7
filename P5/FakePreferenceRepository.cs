@@ -12,7 +12,7 @@ namespace P5
         public string GetPreference(string UserName, string PreferenceName)
         {
             Dictionary<string, string> NameValuePair = new Dictionary<string, string>();
-            string value = "";
+            string value = "Not Found";
             if (_Preferences.TryGetValue(UserName, out NameValuePair))
             {
                 NameValuePair.TryGetValue(PreferenceName, out value);

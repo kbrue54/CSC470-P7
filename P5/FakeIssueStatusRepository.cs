@@ -10,6 +10,19 @@ namespace P5
     {
         private static List<IssueStatus> _IssuesStatuses = new List<IssueStatus>();
 
+        public FakeIssueStatusRepository()
+        {
+
+            _IssuesStatuses.Add( new IssueStatus { Id = 1, Value ="Open"});
+            _IssuesStatuses.Add(new IssueStatus { Id = 2, Value = "Assigned" });
+            _IssuesStatuses.Add(new IssueStatus { Id = 3, Value = "Fixed" });
+            _IssuesStatuses.Add(new IssueStatus { Id = 4, Value = "Closed - Won't fix" });
+            _IssuesStatuses.Add(new IssueStatus { Id = 5, Value = "Closed - Fixed" });
+            _IssuesStatuses.Add(new IssueStatus { Id = 6, Value = "Closed - by design" });
+
+
+
+        }
 
         public void Add(int Id, string value)
         {

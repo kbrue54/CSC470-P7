@@ -62,6 +62,24 @@
     <Compile Include="AppUser.cs" />
     <Compile Include="FakeIssueStatusRepository.cs" />
     <Compile Include="FakeIssueRepository.cs" />
+    <Compile Include="FormSelectIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectIssue.Designer.cs">
+      <DependentUpon>FormSelectIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRecordIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRecordIssue.Designer.cs">
+      <DependentUpon>FormRecordIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormIssueDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIssueDashboard.Designer.cs">
+      <DependentUpon>FormIssueDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="IIssueRepository.cs" />
     <Compile Include="IIssueStatusRepository.cs" />
     <Compile Include="Issue.cs" />
@@ -112,6 +130,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormSelectIssue.resx">
+      <DependentUpon>FormSelectIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRecordIssue.resx">
+      <DependentUpon>FormRecordIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIssueDashboard.resx">
+      <DependentUpon>FormIssueDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
