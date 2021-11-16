@@ -60,6 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppUser.cs" />
+    <Compile Include="FakeFeatureRepositroy.cs" />
+    <Compile Include="IFeatureRepository.cs" />
+    <Compile Include="IRequirementRepository.cs" />
+    <Compile Include="Requirement.cs" />
+    <Compile Include="Feature.cs" />
     <Compile Include="FakeIssueStatusRepository.cs" />
     <Compile Include="FakeIssueRepository.cs" />
     <Compile Include="FormModifyIssue.cs">

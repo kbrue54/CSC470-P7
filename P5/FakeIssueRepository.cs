@@ -72,7 +72,7 @@ namespace P5
         }
 
 
-        ///
+        
         public string Add(Issue Issue) {
          
             string newIssueName = Issue.Title.Trim();
