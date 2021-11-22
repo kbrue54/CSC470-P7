@@ -41,12 +41,62 @@ namespace P5
         
         }
 
-        public string Remove(Feature feature) { return ""; }
+        public string Remove(Feature feature) {
 
-        public string Modify(Feature feature) { return ""; }
+            int index = 0;
+            foreach(Feature f in _features)
+            {
+                if(f.Id == feature.Id)
+                {
+                    _features.RemoveAt(index);
+                    return NO_ERROR;
+                }
+                index++;
+            }
 
-        public Feature GetFeatureById(int projectID, int featureId) { Feature f = new Feature(); return f; }
+            return NOT_FOUND_ERROR; 
+        }
 
-        public Feature GetFeatureByTitle(int projectId, string Title) { Feature f = new Feature(); return f; }
+        public string Modify(Feature feature) {
+            int index = 0;
+            foreach (Feature f in _features)
+            {
+                if (f.Id == feature.Id)
+                {
+                    _features[index] =(feature);
+                    return NO_ERROR;
+                }
+                index++;
+            }
+
+            return NOT_FOUND_ERROR;
+
+        }
+
+        public Feature GetFeatureById(int projectID, int featureId) {
+        
+            foreach(Feature f in _features) { 
+                if(f.ProjectId == projectID && f.Id == featureId)
+                {
+                    return f;
+                }
+            }
+
+            return new Feature();
+        
+        }
+
+        public Feature GetFeatureByTitle(int projectId, string Title) {
+        
+            foreach(Feature f in _features)
+            {
+                if(f.ProjectId == projectId && f.Title == Title)
+                {
+                    return f;
+                }
+            }
+
+            return new Feature();
+        }
     }
 }

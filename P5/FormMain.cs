@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System;
 
 namespace P5
 {
@@ -133,6 +134,28 @@ namespace P5
                     MessageBox.Show("Remove Canceled.");
                 }
             }
+        }
+
+        private void createToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            FormCreateFeature form = new FormCreateFeature(_CurrentAppUser);
+            form.ShowDialog();
+            form.Dispose();
+        }
+
+        private void modifyToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            FakePreferenceRepository prefRepo = new FakePreferenceRepository();
+            FormSelectFeature form = new FormSelectFeature(_CurrentAppUser);
+            form.ShowDialog();
+            form.Dispose();
+
+            FakeFeatureRepositroy featureRepo = new FakeFeatureRepositroy();
+            FormModifyFeature form2 = new FormModifyFeature(featureRepo.GetFeatureById(Convert.ToInt32(prefRepo.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID)),form._selectedFeature.Id));
+            form.ShowDialog();
+            form.Dispose();
+
+         
         }
     }
 }

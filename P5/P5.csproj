@@ -60,7 +60,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppUser.cs" />
+    <Compile Include="FakeRequirementRepository.cs" />
     <Compile Include="FakeFeatureRepositroy.cs" />
+    <Compile Include="FormSelectFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectFeature.Designer.cs">
+      <DependentUpon>FormSelectFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModifyFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifyFeature.Designer.cs">
+      <DependentUpon>FormModifyFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreateFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreateFeature.Designer.cs">
+      <DependentUpon>FormCreateFeature.cs</DependentUpon>
+    </Compile>
     <Compile Include="IFeatureRepository.cs" />
     <Compile Include="IRequirementRepository.cs" />
     <Compile Include="Requirement.cs" />
@@ -141,8 +160,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCreateFeature.resx">
+      <DependentUpon>FormCreateFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModifyFeature.resx">
+      <DependentUpon>FormModifyFeature.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormModifyIssue.resx">
       <DependentUpon>FormModifyIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectFeature.resx">
+      <DependentUpon>FormSelectFeature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectIssue.resx">
       <DependentUpon>FormSelectIssue.cs</DependentUpon>
