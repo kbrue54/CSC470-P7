@@ -201,5 +201,12 @@ namespace P5
 
 
         }
+
+        private void createToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormCreateRequirement form = new FormCreateRequirement(_CurrentAppUser);
+            form.ShowDialog();
+            form.Dispose();
+        }
     }
 }
