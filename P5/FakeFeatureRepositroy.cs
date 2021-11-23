@@ -16,8 +16,33 @@ namespace P5
 
         private static List<Feature> _features = new List<Feature>();
 
+        public FakeFeatureRepositroy()
+        {
+            if(_features.Count == 0)
+            {
+                _features.Add(new Feature
+                {
+                    Id = 0,
+                    ProjectId = 1,
+                    Title = "Test Feature"
+                });
+            }
+        }
 
         public string Add(Feature feature) {
+            if (feature.Title == "")
+            {
+                return EMPTY_TITLE_ERROR;
+            }
+
+            foreach(Feature f in _features)
+            {
+                if (f.Title == feature.Title)
+                {
+                    return DUPLICATE_TITLE_ERROR;
+                }
+            }
+
             _features.Add(feature);
             return NO_ERROR; 
         }
@@ -59,6 +84,21 @@ namespace P5
 
         public string Modify(Feature feature) {
             int index = 0;
+          
+
+            if (feature.Title == "")
+            {
+                return EMPTY_TITLE_ERROR;
+            }
+
+            foreach (Feature f in _features)
+            {
+                if (f.Title == feature.Title)
+                {
+                    return DUPLICATE_TITLE_ERROR;
+                }
+            }
+
             foreach (Feature f in _features)
             {
                 if (f.Id == feature.Id)

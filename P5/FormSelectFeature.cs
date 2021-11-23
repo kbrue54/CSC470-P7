@@ -19,6 +19,12 @@ namespace P5
         {
             InitializeComponent();
             _user = user;
+            CenterToScreen();
+
+            FakePreferenceRepository prefRepo = new FakePreferenceRepository();
+            FakeFeatureRepositroy featureRepo = new FakeFeatureRepositroy();
+            dataGridView1.DataSource = featureRepo.GetAll(Convert.ToInt32(prefRepo.GetPreference(_user.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID)));
+
 
 
         }
@@ -33,7 +39,7 @@ namespace P5
             FakePreferenceRepository prefRepo = new FakePreferenceRepository();
             FakeFeatureRepositroy featureRepo = new FakeFeatureRepositroy();
 
-            dataGridView1.DataSource = featureRepo.GetAll(Convert.ToInt32(prefRepo.GetPreference(_user.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID)));
+
 
             _selectedFeature = featureRepo.GetFeatureById(Convert.ToInt32(prefRepo.GetPreference(_user.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID)),
                 Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()));

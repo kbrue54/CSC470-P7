@@ -18,6 +18,7 @@ namespace P5
         public FormCreateFeature(AppUser user)
         {
             InitializeComponent();
+            CenterToScreen();
             _user = user;
         }
 
@@ -42,6 +43,7 @@ namespace P5
                 MessageBox.Show(Error);
             }
 
+            Close();
 
         }
     }

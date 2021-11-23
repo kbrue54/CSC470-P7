@@ -12,11 +12,13 @@ namespace P5
 {
     public partial class FormModifyFeature : Form
     {
-        Feature _feature;
+        Feature f = new Feature();
         public FormModifyFeature(Feature feature)
         {
             InitializeComponent();
-            _feature = feature;
+            CenterToScreen();
+            f = feature;
+            textBox1.Text = feature.Title;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -26,14 +28,20 @@ namespace P5
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Feature temp = new Feature();
+            temp.Title = textBox1.Text;
+            temp.Id = f.Id;
+            temp.ProjectId = f.ProjectId;
             FakeFeatureRepositroy featureRepo = new FakeFeatureRepositroy();
-            _feature.Title = textBox1.Text;
+            
 
-            string Error = featureRepo.Modify(_feature);
+            string Error =  featureRepo.Modify(temp);
+            DialogResult = DialogResult.OK;
 
-            if( Error != FakeFeatureRepositroy.NO_ERROR)
+            if (Error != FakeFeatureRepositroy.NO_ERROR)
             {
                 MessageBox.Show(Error);
+                DialogResult = DialogResult.Cancel;
             }
         }
     }
