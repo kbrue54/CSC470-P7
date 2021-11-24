@@ -15,10 +15,47 @@ namespace P5
         public const string MISSING_FEATUREID_ERROR = "Must select a feature for this requirement";
         public const string MISSING_PROJECTID_ERROR = "Must select a project for this requirement";
 
-        List<Requirement> _requirements = new List<Requirement>();
+        private static List<Requirement> _requirements = new List<Requirement>();
+
+        public FakeRequirementRepository()
+        {
+            if(_requirements.Count() == 0)
+            {
+                _requirements.Add(new Requirement
+                {
+                    Id = 0,
+                    ProjectId =1,
+                    FeatureId =0,
+                    Statement = "Test statement"
+                }) ;
+            }
+        }
 
         public string Add(Requirement requirement)
         {
+            foreach(Requirement r in _requirements)
+            {
+                if(r.Statement == requirement.Statement)
+                {
+                    return DUPLICATE_STATEMENT_ERROR;
+                }
+            }
+
+            if (requirement.Statement == "")
+            {
+                return EMPTY_STATEMENT_ERROR;
+            }
+
+            if(requirement.FeatureId < 0)
+            {
+                return MISSING_FEATUREID_ERROR;
+            }
+
+            if(requirement.ProjectId < 0)
+            {
+                return MISSING_PROJECTID_ERROR;
+            }
+
             _requirements.Add(requirement);
             return NO_ERROR;
         }
@@ -57,14 +94,29 @@ namespace P5
 
         public string Modify(Requirement requirement)
         {
+            foreach (Requirement r in _requirements)
+            {
+                if (r.Statement == requirement.Statement)
+                {
+                    return DUPLICATE_STATEMENT_ERROR;
+                }
+            }
+
+            if (requirement.Statement == "")
+            {
+                return EMPTY_STATEMENT_ERROR;
+            }
+
+
             int index = 0;
             foreach(Requirement r in _requirements)
             {
                 if(r.Id == requirement.Id)
                 {
-                    _requirements[index] = r;
+                    _requirements[index] = requirement;
                     return NO_ERROR;
                 }
+                index++;
             }
 
             return REQUIREMENT_NOT_FOUND_ERROR;
@@ -101,7 +153,7 @@ namespace P5
         public void RemoveByFeatureId(int featureID)
         {
             int index = 0;
-            foreach(Requirement r in _requirements)
+            foreach(Requirement r in _requirements.ToList())
             {
                 if(r.FeatureId == featureID)
                 {
@@ -109,6 +161,11 @@ namespace P5
                 }
                 index++;
             }
+        }
+
+        public List<Requirement> getAllTestFunc()
+        {
+            return _requirements;
         }
     }
 }

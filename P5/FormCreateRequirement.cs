@@ -32,6 +32,7 @@ namespace P5
 
             label2.Enabled = false;
             textBox1.Enabled = false;
+            button1.Enabled = false;
 
         }
 
@@ -53,12 +54,15 @@ namespace P5
             requirement.FeatureId = featureRepo.GetFeatureByTitle(PID,comboBox1.SelectedItem.ToString()).Id;
             requirement.Statement = textBox1.Text;
 
+
             string Error = requirementRepo.Add(requirement);
 
-            if(Error != FakeRequirementRepository.NO_ERROR)
+
+            if (Error != FakeRequirementRepository.NO_ERROR)
             {
                 MessageBox.Show(Error);
             }
+            Close();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,6 +71,7 @@ namespace P5
             {
                 label2.Enabled = true;
                 textBox1.Enabled = true;
+                button1.Enabled = true;
             }
         }
     }

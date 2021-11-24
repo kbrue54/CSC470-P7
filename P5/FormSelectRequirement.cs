@@ -16,13 +16,14 @@ namespace P5
         int FID;
         int PID;
         List<Requirement> reqs = new List<Requirement>();
-        int _requirementID;
+        public int _requirementID;
 
-        public FormSelectRequirement()
+        public FormSelectRequirement(AppUser user)
         {
             InitializeComponent();
             CenterToScreen();
 
+            _user = user;
             FakePreferenceRepository preferenceRepo = new FakePreferenceRepository();
             FakeFeatureRepositroy featureRepo = new FakeFeatureRepositroy();
             PID = Convert.ToInt32(preferenceRepo.GetPreference(_user.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID));
@@ -48,11 +49,20 @@ namespace P5
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             FakeRequirementRepository requirementRepo = new FakeRequirementRepository();
+            FakeFeatureRepositroy featureRepo = new FakeFeatureRepositroy();
+
+
+            FID = featureRepo.GetFeatureByTitle(PID, comboBox1.SelectedItem.ToString()).Id;
 
             reqs.Clear();
 
+
+
             foreach (Requirement r in requirementRepo.GetAll(PID))
             {
+
+
+
                 if (r.FeatureId == FID)
                 {
                     reqs.Add(r);
@@ -60,6 +70,8 @@ namespace P5
             }
 
             dataGridView1.DataSource = reqs;
+            dataGridView1.Refresh();
+            //dataGridView1.DataSource = requirementRepo.getAllTestFunc();
 
             if(comboBox1.Text != "<Make Selection>")
             {

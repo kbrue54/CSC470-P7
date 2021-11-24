@@ -1,6 +1,12 @@
-﻿using System.Windows.Forms;
-using System;
-
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 namespace P5
 {
     public partial class FormMain : Form
@@ -179,8 +185,8 @@ namespace P5
 
                     if (result == DialogResult.Yes)
                     {
-                        featureRepo.Remove(featureRepo.GetFeatureById(form._selectedFeature.ProjectId, form._selectedFeature.Id));
                         requirementRepo.RemoveByFeatureId(form._selectedFeature.Id);
+                        featureRepo.Remove(featureRepo.GetFeatureById(form._selectedFeature.ProjectId, form._selectedFeature.Id));
                     }
                     else
                     {
@@ -207,6 +213,38 @@ namespace P5
             FormCreateRequirement form = new FormCreateRequirement(_CurrentAppUser);
             form.ShowDialog();
             form.Dispose();
+        }
+
+        private void modifyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormSelectRequirement form = new FormSelectRequirement(_CurrentAppUser);
+            form.ShowDialog();
+            form.Dispose();
+
+            if (form.DialogResult == DialogResult.OK)
+            {
+                FormModifyRequirement form2 = new FormModifyRequirement(form._requirementID, _CurrentAppUser);
+                form2.ShowDialog();
+                form2.Dispose();
+            }
+        }
+
+        private void removeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormSelectRequirement form = new FormSelectRequirement(_CurrentAppUser);
+            form.ShowDialog();
+            form.Dispose();
+
+            if(form.DialogResult == DialogResult.OK)
+            {
+                FakeRequirementRepository requirementRepo = new FakeRequirementRepository();
+                DialogResult result = MessageBox.Show("Are you sure you want to remove: " + requirementRepo.GetRequirementById(form._requirementID).Statement + "?", "Confirmation", MessageBoxButtons.YesNo);
+
+                if(result == DialogResult.Yes)
+                {
+                    requirementRepo.Remove(requirementRepo.GetRequirementById(form._requirementID));
+                }
+            }
         }
     }
 }
